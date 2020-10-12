@@ -48,17 +48,23 @@ function animate(){
 	requestAnimationFrame(animate);
 } 
 
- var geometry=new THREE.BoxGeometry(20,10,10);
- var material=new THREE.MeshNormalMaterial();
- var box =new THREE.Mesh(geometry,material);
- box.position.set(10,5,0);
+ frame = new THREE.Object3D();  // an empty "frame" for group the meshes, centered at origin
+    scene.add(frame);
+
+    columnGeom = new THREE.BoxGeometry(10, 30, 10);
+    platformGeom = new THREE.BoxGeometry(20, 10, 10);
+    material = new THREE.MeshNormalMaterial();
+
+    var mesh = new THREE.Mesh(columnGeom, material);
+    var mesh2 = mesh.clone();
+    mesh.position.set(5, 15, -5);
+    mesh2.position.set(5 + 30, 15, -5);
+    var mesh1 = new THREE.Mesh(platformGeom, material);
+    mesh1.position.set(20, 5, -5);
+    frame.add(mesh);
+    frame.add(mesh1);
+    frame.add(mesh2);
  
- var geometryl=new THREE.CylinderGeometry(5,5,10,64);
- var cylinder=new THREE.Mesh(geometryl,material);
- cylinder.position.set(15,15,0);
- 
- scene.add(cylinder);
- scene.add(box);
 
 </script>
 </body>
